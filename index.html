@@ -5,279 +5,272 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dangqing Liu | Portfolio</title>
     <link rel="icon" type="image/png" href="favicon.png"> 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=Noto+Serif+TC:wght@700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4b2e83;   
-            --gold: #b7a57a;      
-            --bg: #f8f9fa;        
-            --panel-bg: #fdfcf7;  
-            --text: #333;
-            --tag-bg: #eee;
-            --border: #ccc;
-            --radius-panel: 18px; 
-            --radius-button: 30px;
+            /* 极简硬朗黑白灰主题 */
+            --primary: #000000;   
+            --secondary: #666666; 
+            --accent: #aaaaaa;    
+            --bg: #ffffff;        
+            --text: #111111;
+            --border: #dddddd;
         }
 
         body.dark-mode {
-            --bg: #121212;
-            --panel-bg: #1e1e1e;
-            --text: #f5f5f7;
-            --primary: #a782e2;   
-            --tag-bg: #2c2c2e;
-            --border: #444;
+            --bg: #0a0a0a;        
+            --text: #eeeeee;
+            --primary: #ffffff;   
+            --secondary: #999999;
+            --accent: #666666;    
+            --border: #333333;
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
             padding: 0;
-            transition: background-color 0.4s ease, color 0.4s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
             line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        h1, h2, h3, .header-name, .project-overlay, .tab-btn, .header-tools, .cv-section-title {
+            font-family: 'Space Grotesk', "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
         }
         
-        .lang-en, .lang-sc, .lang-tc { display: none; }
-        body[data-lang="en"] .lang-en { display: block; }
-        body[data-lang="en"] span.lang-en { display: inline; }
-        body[data-lang="sc"] .lang-sc { display: block; }
-        body[data-lang="sc"] span.lang-sc { display: inline; }
-        body[data-lang="tc"] .lang-tc { display: block; }
-        body[data-lang="tc"] span.lang-tc { display: inline; }
-
-        .fixed-control {
-            position: fixed !important;
-            transition: opacity 0.3s ease;
-            z-index: 200;
-        }
-
-        .theme-switch-wrapper {
-            top: 20px; 
-            left: 20px; 
-            display: flex;
-            align-items: center;
-        }
-
-        .theme-switch { position: relative; display: inline-block; width: 60px; height: 34px; }
-        .theme-switch input { opacity: 0; width: 0; height: 0; }
-
-        .slider {
-            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-            background-color: var(--border); transition: .4s; border-radius: 34px;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5px; box-sizing: border-box; box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .slider .icon { font-size: 14px; user-select: none; z-index: 1; }
-
-        .slider:before {
-            position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px;
-            background-color: white; transition: .4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-radius: 50%; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        input:checked + .slider { background-color: var(--primary); }
-        input:checked + .slider:before { transform: translateX(26px); background-color: #fdfcf7; }
-
-        /* 右上角下拉菜单样式 (默认隐藏，非Home页面显示) */
-        .lang-switch-wrapper { top: 20px; right: 20px; display: none; }
-        .lang-select {
-            padding: 8px 15px; border-radius: var(--radius-button); border: 1px solid var(--border);
-            background-color: var(--panel-bg); color: var(--text); font-size: 0.9em; font-weight: 600;
-            cursor: pointer; outline: none; transition: 0.3s;
-            appearance: none; -webkit-appearance: none; -moz-appearance: none;
-            text-align: center;
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%234b2e83%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-            background-repeat: no-repeat; background-position: right 10px top 50%;
-            background-size: 10px auto; padding-right: 30px;
-        }
-        .lang-select:hover { border-color: var(--primary); color: var(--primary); }
-
-        nav {
-            background: var(--panel-bg); padding: 15px 0; text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
-            transition: background-color 0.4s ease;
-        }
         .tab-btn {
-            background: none; border: none; font-size: 1.1em; font-weight: bold;
-            color: #888; margin: 0 15px; cursor: pointer; padding: 5px 10px; transition: 0.3s;
+            min-width: 60px; /* 保证切换语言时按钮不会缩得太小 */
+            text-align: center;
         }
-        .tab-btn:hover, .tab-btn.active { color: var(--primary); border-bottom: 3px solid var(--primary); }
+        body[data-lang="sc"] .tab-btn, body[data-lang="tc"] .tab-btn {
+            letter-spacing: 2px; /* 中文导航增加一点字间距更有高级感 */
+            font-weight: 500;
+        }
+        /* 多语言控制：加上 !important 防止被其他属性覆盖产生重叠Bug */
+        .lang-en, .lang-sc, .lang-tc { display: none !important; }
+        body[data-lang="en"] div.lang-en, body[data-lang="en"] p.lang-en, body[data-lang="en"] ul.lang-en, body[data-lang="en"] h1.lang-en, body[data-lang="en"] h2.lang-en { display: block !important; }
+        body[data-lang="en"] span.lang-en { display: inline !important; }
+        
+        body[data-lang="sc"] div.lang-sc, body[data-lang="sc"] p.lang-sc, body[data-lang="sc"] ul.lang-sc, body[data-lang="sc"] h1.lang-sc, body[data-lang="sc"] h2.lang-sc { display: block !important; }
+        body[data-lang="sc"] span.lang-sc { display: inline !important; }
+        
+        body[data-lang="tc"] div.lang-tc, body[data-lang="tc"] p.lang-tc, body[data-lang="tc"] ul.lang-tc, body[data-lang="tc"] h1.lang-tc, body[data-lang="tc"] h2.lang-tc { display: block !important; }
+        body[data-lang="tc"] span.lang-tc { display: inline !important; }
+        
 
-        main { flex: 1; max-width: 900px; width: 100%; margin: 40px auto; padding: 0 20px; box-sizing: border-box; }
-        .tab-content { display: none; background: var(--panel-bg); padding: 30px; border-radius: var(--radius-panel); box-shadow: 0 2px 15px rgba(0,0,0,0.05); animation: fadeIn 0.4s; transition: background-color 0.4s ease; }
+        /* --- 宽幅极简顶部导航栏 --- */
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: flex-end;
+            padding: 20px 40px 15px 40px; 
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
+        body.dark-mode header { background: rgba(10, 10, 10, 0.95); }
+
+        .header-name {
+            font-size: 1.5em; font-weight: 700; color: var(--primary);
+            letter-spacing: 4px; text-transform: uppercase; line-height: 1;
+        }
+
+        .header-right {
+            display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+        }
+
+        .header-tools {
+            display: flex; gap: 15px; font-size: 0.85em; font-weight: 600; color: var(--secondary);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .tool-btn {
+            background: none; border: none; color: var(--secondary); cursor: pointer;
+            padding: 0; font-family: inherit; font-size: inherit; font-weight: inherit;
+            transition: color 0.3s ease; position: relative;
+        }
+        .tool-btn:hover, .tool-btn.active { color: var(--primary); }
+        .tool-btn::after {
+            content: ''; position: absolute; width: 0; height: 1.5px; bottom: -2px; left: 0;
+            background-color: var(--primary); transition: width 0.3s ease;
+        }
+        .tool-btn:hover::after, .tool-btn.active::after { width: 100%; }
+
+        .top-nav { display: flex; gap: 30px; }
+
+        .tab-btn {
+            background: none; border: none; font-size: 1em; font-weight: 600;
+            color: var(--primary); cursor: pointer; padding: 5px 0; text-transform: uppercase;
+            position: relative; letter-spacing: 1px;
+        }
+        .tab-btn::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+            background-color: var(--primary); transition: width 0.3s ease;
+        }
+        .tab-btn:hover::after, .tab-btn.active::after { width: 100%; }
+
+        /* 将原来的 max-width 修改为更宽的值 */
+        main {
+            flex: 1;
+            max-width: 1100px; /* 从 850px 改为 1100px */
+            width: 100%;
+            margin: 50px auto;
+            padding: 0 40px; /* 增加一点左右内边距，在大屏上更有呼吸感 */
+            box-sizing: border-box;
+        }
+        
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        #home { 
-            text-align: center; padding: 120px 20px; border-radius: var(--radius-panel);
-            background: url('bg.jpg') no-repeat center center/cover;
-            position: relative; isolation: isolate; overflow: hidden;
+        /* 文本内超链接统一样式 */
+        .text-link {
+            color: var(--text); font-weight: 600; text-decoration: none;
+            border-bottom: 1.5px solid var(--accent); 
+            position: relative; display: inline-block; transition: 0.3s ease;
+            line-height: 1.2;
         }
-        #home::after {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.4); z-index: -1; transition: opacity 0.4s ease; 
+        .text-link::after {
+            content: ''; position: absolute; width: 0; height: 1.5px; bottom: -1.5px; left: 0;
+            background-color: var(--primary); transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        #home.bg-bright::after { opacity: 0.1; }
+        .text-link:hover::after { width: 100%; }
 
-        .home-greeting { 
-            font-size: 4em; color: white; margin-bottom: 15px; font-weight: 700; 
-            letter-spacing: 2px; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); 
+        .underline-hover {
+            position: relative; text-decoration: none; color: var(--primary); display: inline-block; cursor: pointer;
         }
-        body[data-lang="en"] .home-greeting { font-family: 'Playfair Display', serif; }
-        body[data-lang="sc"] .home-greeting { font-family: 'Noto Serif SC', serif; }
-        body[data-lang="tc"] .home-greeting { font-family: 'Noto Serif TC', serif; }
+        .underline-hover::after {
+            content: ''; position: absolute; width: 0; height: 1.5px; bottom: 0; left: 0;
+            background-color: var(--primary); transition: width 0.3s ease;
+        }
+        .underline-hover:hover::after { width: 100%; }
 
-        .home-subtitle { font-size: 1.2em; color: white; margin-bottom: 40px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); max-width: 700px; margin-left: auto; margin-right: auto;}
+        #home { text-align: center; padding: 100px 0; }
+        .home-greeting { font-size: 4em; color: var(--primary); margin-bottom: 15px; font-weight: 700; line-height: 1.1; text-transform: uppercase;}
+        .home-subtitle {
+            max-width: 1000px; /* 显著调大限制宽度，原先可能是 600px */
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            word-break: keep-all; /* 确保中文不会在奇怪的地方断开 */
+            white-space: normal;  /* 允许在必要时换行，但不会无故换行 */
+        }
+        .about-container { display: flex; gap: 40px; align-items: flex-start; margin-bottom: 50px;}
+        .profile-pic { width: 140px; height: 140px; background-color: var(--border); background-image: url('photo.jpg'); background-size: cover; background-position: center; flex-shrink: 0; filter: grayscale(20%); border: 1px solid var(--border);}
         
-        /* 首页下拉菜单与按钮样式 */
-        .home-action-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .home-lang-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .home-lang-select {
-            padding: 8px 15px; border-radius: var(--radius-button); border: 1px solid rgba(255,255,255,0.5);
-            background-color: rgba(0,0,0,0.3); color: white; font-size: 0.95em; font-weight: bold;
-            cursor: pointer; outline: none; transition: 0.3s;
-            appearance: none; -webkit-appearance: none; -moz-appearance: none;
-            text-align: center;
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22white%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-            background-repeat: no-repeat; background-position: right 10px top 50%;
-            background-size: 10px auto; padding-right: 30px;
-        }
-        .home-lang-select:hover { background-color: rgba(0,0,0,0.6); border-color: white; }
-        .home-lang-select option { color: #333; background: white; }
-
-        .more-btn {
-            background: transparent; color: white; border: 2px solid white; padding: 12px 35px;
-            border-radius: var(--radius-button); font-size: 1.1em; cursor: pointer; font-weight: bold;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
-        .more-btn:hover { 
-            background: white; color: var(--primary); text-shadow: none;
-            transform: scale(1.05) translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.4); 
-        }
-
-        #about.tab-content { background: transparent; box-shadow: none; padding: 0; }
-        .content-panel { background: var(--panel-bg); padding: 30px; border-radius: var(--radius-panel); box-shadow: 0 2px 15px rgba(0,0,0,0.05); transition: background-color 0.4s ease; }
-        .about-container { display: flex; gap: 30px; align-items: flex-start; }
-        .profile-pic { width: 160px; height: 160px; border-radius: 12px; background-color: #ddd; background-image: url('photo.jpg'); background-size: cover; background-position: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .about-info h1 { margin-top: 0; color: var(--primary); }
-        .about-link { color: var(--primary); font-weight: bold; text-decoration: none; }
-        .about-link:hover { text-decoration: underline; }
+        .about-info h1 { margin-top: 0; font-size: 2.2em; color: var(--primary); text-transform: uppercase;}
+        .about-info p { color: var(--text); margin-bottom: 15px; }
         
-        .social-links { margin-top: 15px; display: flex; gap: 15px; align-items: center; }
-        .social-icon { width: 32px; height: 32px; transition: transform 0.3s ease, filter 0.4s ease; vertical-align: middle; }
-        .social-icon:hover { transform: scale(1.15); }
-        body.dark-mode .social-icon { filter: invert(1); }
+        .social-links { margin-top: 25px; display: flex; gap: 20px; align-items: center; }
+        .social-icon { width: 24px; height: 24px; transition: 0.3s ease; color: var(--primary); display: block;}
+        .social-icon:hover { transform: translateY(-2px); opacity: 0.7;}
+        .social-icon img, .social-icon svg { width: 24px; height: 24px; display: block; fill: currentColor;}
+        body.dark-mode .social-icon img { filter: invert(1); }
 
-        .news-section { margin-top: 20px; } 
-        .news-item { margin-bottom: 15px; display: flex; align-items: baseline; }
-        .news-date { font-weight: bold; color: var(--gold); margin-right: 15px; min-width: 90px; }
-        body.dark-mode .news-section { border-color: var(--border); }
+        .news-item { margin-bottom: 20px; display: flex; align-items: baseline; border-bottom: 1px solid var(--border); padding-bottom: 15px;}
+        .news-item:last-child { border-bottom: none; }
+        .news-date { font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--secondary); margin-right: 25px; min-width: 90px; font-size: 0.9em; text-transform: uppercase;}
 
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        .project-card { position: relative; height: 200px; border-radius: var(--radius-panel); overflow: hidden; cursor: pointer; background-color: var(--tag-bg); background-size: cover; background-position: center; transition: background-color 0.4s ease; }
-        .project-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(75, 46, 131, 0.85); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2em; font-weight: bold; text-align: center; opacity: 0; transition: opacity 0.3s ease; padding: 15px; box-sizing: border-box;}
-        .project-card:hover .project-overlay { opacity: 1; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .project-card { position: relative; height: 240px; cursor: pointer; background-color: var(--border); background-size: cover; background-position: center; transition: 0.3s; border: 1px solid var(--border); overflow: hidden;}
+        .project-card:hover { border-color: var(--primary); }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(50%); transition: 0.4s; }
+        .project-card:hover img { filter: grayscale(0%); transform: scale(1.05); }
+        
+        .project-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: var(--bg); color: var(--primary); padding: 15px; box-sizing: border-box; font-size: 1.1em; font-weight: 600; border-top: 1px solid var(--border); transform: translateY(100%); transition: transform 0.3s ease;}
+        .project-card:hover .project-overlay { transform: translateY(0); }
 
-        .cv-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px; }
-        .cv-section-title { color: var(--primary); border-bottom: 2px solid var(--gold); padding-bottom: 5px; margin-top: 30px; margin-bottom: 15px; font-size: 1.4em; font-weight: bold; }
-        .cv-item { margin-bottom: 25px; }
+        .cv-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 50px; }
+        .cv-header h2 { font-size: 2.5em; margin: 0; text-transform: uppercase; letter-spacing: -1px;}
         
-        .cv-item-header { display: flex; justify-content: space-between; font-weight: bold; color: var(--text); }
-        .cv-item-subheader { display: flex; justify-content: space-between; color: #666; font-size: 0.95em; margin-bottom: 8px; font-style: italic; }
-        body.dark-mode .cv-item-subheader { color: #aaa; }
-        
-        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-        .tag { background: var(--tag-bg); padding: 5px 14px; border-radius: var(--radius-button); font-size: 0.85em; color: var(--text); transition: background-color 0.4s ease; }
-        
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; }
-        .modal-content { background: var(--panel-bg); padding: 30px; border-radius: var(--radius-panel); max-width: 600px; width: 90%; position: relative; transition: background-color 0.4s ease; color: var(--text); }
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5em; cursor: pointer; color: #888; border: none; background: none;}
-        
-        /* 底部版权信息 */
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            color: #888;
-            font-size: 0.9em;
-            margin-top: auto;
+        .cv-section-title { 
+            color: var(--secondary); margin-top: 60px; margin-bottom: 30px; 
+            font-size: 1.25em; font-weight: 700; text-transform: uppercase; 
+            letter-spacing: 1.5px; border-bottom: 1px solid var(--border); 
+            padding-bottom: 8px; width: 100%;
         }
+        
+        .cv-item { margin-bottom: 35px; }
+        .cv-item-header { display: flex; justify-content: space-between; font-weight: 700; color: var(--primary); font-size: 1.15em; font-family: 'Space Grotesk', sans-serif;}
+        .cv-item-subheader { display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; color: var(--secondary); font-size: 0.95em; margin-bottom: 12px; margin-top: 4px; font-weight: 500;}
+        .degree-text { flex: 1; }
+        .date-text { white-space: nowrap; text-align: right; }
+        
+        .cv-item ul { padding-left: 18px; margin-top: 5px;}
+        .cv-item li { margin-bottom: 8px; }
+        
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .tag { border: 1px solid var(--border); padding: 6px 14px; font-size: 0.85em; font-weight: 500; color: var(--primary); font-family: 'Space Grotesk', sans-serif; transition: 0.3s; }
+        .tag:hover { border-color: var(--primary); background: var(--primary); color: var(--bg); }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+        .modal-content { background: var(--bg); padding: 40px; max-width: 600px; width: 90%; position: relative; color: var(--text); border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .modal-content h2 { margin-top: 0; font-size: 1.8em; text-transform: uppercase; margin-right: 30px;}
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2.5em; font-weight: 300; cursor: pointer; color: var(--secondary); border: none; background: none; transition: 0.3s; font-family: 'Space Grotesk', sans-serif; line-height: 1;}
+        .close-btn:hover { color: var(--primary); }
 
-        /* --- 手机端防遮挡及深度排版优化 --- */
-        @media (max-width: 600px) {
-            .theme-switch-wrapper { top: 10px; left: 10px; }
-            .theme-switch { width: 50px; height: 28px; }
-            .slider:before { height: 20px; width: 20px; left: 4px; bottom: 4px; }
-            input:checked + .slider:before { transform: translateX(22px); }
-            .slider .icon { font-size: 12px; }
-            
-            .lang-switch-wrapper { top: 10px; right: 10px; }
+        footer { text-align: center; padding: 40px 20px; color: var(--secondary); font-size: 0.85em; margin-top: auto; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 20px;}
 
-            nav { padding-top: 60px; padding-bottom: 10px; overflow-x: auto; white-space: nowrap; } 
-            .tab-btn { margin: 0 5px; font-size: 1em; } 
-
-            .home-greeting { font-size: 2.8em; }
-            .home-subtitle { font-size: 1em; }
-
-            /* About 页面手机端垂直居中排版 */
-            .about-container { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
-            .profile-pic { width: 140px; height: 140px; }
-            .social-links { justify-content: center; }
-
-            /* CV 页面手机端排版，防止时间被挤压 */
-            .cv-item-header, .cv-item-subheader { flex-direction: column; align-items: flex-start; gap: 5px; }
-            .cv-item-header span:last-child, .cv-item-subheader span:last-child { color: var(--primary); font-size: 0.9em; }
-            
+        @media (max-width: 768px) {
+            header { flex-direction: column; align-items: flex-start; padding: 20px; gap: 20px; }
+            .header-right { align-items: flex-start; width: 100%; gap: 15px;}
+            .header-tools { width: 100%; justify-content: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 10px;}
+            .top-nav { width: 100%; overflow-x: auto; padding-bottom: 5px; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+            .about-container { flex-direction: column; gap: 20px; }
+            .cv-item-header, .cv-item-subheader { flex-direction: column; gap: 5px; }
+            .date-text { text-align: left; color: var(--text); opacity: 0.8;}
             .news-item { flex-direction: column; }
             .news-date { margin-bottom: 5px; }
-            
-            .content-panel, .tab-content { padding: 20px; }
+            .home-greeting { font-size: 2.8em; }
         }
     </style>
 </head>
 <body data-lang="en">
 
-<div class="theme-switch-wrapper fixed-control">
-    <label class="theme-switch" for="checkbox">
-        <input type="checkbox" id="checkbox" onchange="toggleTheme(this)">
-        <div class="slider">
-            <span class="icon" style="margin-left: 4px;">☀️</span>
-            <span class="icon" style="margin-right: 4px;">🌙</span>
+<header>
+    <div class="header-name">Dangqing Liu</div>
+    <div class="header-right">
+        <div class="header-tools">
+            <div style="display: flex; gap: 10px;">
+                <button class="tool-btn active" id="lang-en" onclick="setLanguage('en')">ENG</button>
+                <span>|</span>
+                <button class="tool-btn" id="lang-sc" onclick="setLanguage('sc')">简</button>
+                <span>|</span>
+                <button class="tool-btn" id="lang-tc" onclick="setLanguage('tc')">繁</button>
+            </div>
+            <div style="margin-left: auto;">
+                <button class="tool-btn" id="themeToggleBtn" onclick="toggleThemeMode()">[ ☀ ]</button>
+            </div>
         </div>
-    </label>
-</div>
-
-<div class="lang-switch-wrapper fixed-control" id="floatingLangWrapper">
-    <select id="floatingLangSelect" class="lang-select" onchange="setLanguage(this.value)">
-        <option value="en">🌐 English</option>
-        <option value="sc">🌐 简体中文</option>
-        <option value="tc">🌐 繁體中文</option>
-    </select>
-</div>
-
-<nav>
-    <button class="tab-btn active" data-target="home" onclick="switchTab('home')">Home</button>
-    <button class="tab-btn" data-target="about" onclick="switchTab('about')">About</button>
-    <button class="tab-btn" data-target="projects" onclick="switchTab('projects')">Projects</button>
-    <button class="tab-btn" data-target="cv" onclick="switchTab('cv')">CV</button>
-</nav>
+        <nav class="top-nav">
+            <button class="tab-btn active" data-target="home" onclick="switchTab('home')">
+                <span class="lang-en">HOME</span>
+                <span class="lang-sc">首页</span>
+                <span class="lang-tc">首頁</span>
+            </button>
+            <button class="tab-btn" data-target="about" onclick="switchTab('about')">
+                <span class="lang-en">ABOUT</span>
+                <span class="lang-sc">关于</span>
+                <span class="lang-tc">關於</span>
+            </button>
+            <button class="tab-btn" data-target="projects" onclick="switchTab('projects')">
+                <span class="lang-en">PROJECTS</span>
+                <span class="lang-sc">项目</span>
+                <span class="lang-tc">專案</span>
+            </button>
+            <button class="tab-btn" data-target="cv" onclick="switchTab('cv')">
+                <span class="lang-en">CV</span>
+                <span class="lang-sc">简历</span>
+                <span class="lang-tc">簡歷</span>
+            </button>
+        </nav>
+    </div>
+</header>
 
 <main>
     <section id="home" class="tab-content active">
@@ -294,123 +287,144 @@
             <div class="home-subtitle">致力於應用嵌入式技術與訊號處理，開發創新解決方案以應對現實世界的挑戰。</div>
         </div>
 
-        <div class="home-action-group">
-<div class="home-lang-wrapper" style="position: relative;">
-    <span style="position: absolute; right: 100%; margin-right: 10px; font-size: 1.3em; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">🌐</span>
-    <select id="homeLangSelect" class="home-lang-select" onchange="setLanguage(this.value)">
-                    <option value="en">English</option>
-                    <option value="sc">简体中文</option>
-                    <option value="tc">繁體中文</option>
-                </select>
-            </div>
-            <button class="more-btn" 
-                    onmouseenter="document.getElementById('home').classList.add('bg-bright')" 
-                    onmouseleave="document.getElementById('home').classList.remove('bg-bright')"
-                    onclick="switchTab('about')">More of Me</button>
-        </div>
+        <a class="underline-hover" style="font-weight: 600; font-family: 'Space Grotesk'; text-transform: uppercase; display: inline-block; margin-top: 15vh;" onclick="switchTab('about')">Explore More ↘</a>
     </section>
 
     <section id="about" class="tab-content">
-        <div class="content-panel">
-            <div class="about-container">
-                <div class="profile-pic"></div>
-                <div class="about-info">
-                    <h1 class="lang-en">Dangqing (Leonard) Liu</h1>
-                    <h1 class="lang-sc">刘党庆 (Leonard)</h1>
-                    <h1 class="lang-tc">劉黨慶 (Leonard)</h1>
-                    
-                    <p class="lang-en">Junior undergraduate student studying Electrical and Computer Engineering at the University of Washington. Currently working in <a href="https://www.uwseal.org/" target="_blank" class="about-link">SEAL</a> under the guidance of Prof. Alexander V. Mamishev, and incoming SWE Intern at OnlyWorks Inc.</p>
-                    <p class="lang-sc">华盛顿大学 (UW) 电气与计算机工程专业大三本科生。目前在 Alexander V. Mamishev 教授的指导下于 <a href="https://www.uwseal.org/" target="_blank" class="about-link">SEAL</a> 实验室进行研究，并将于 OnlyWorks Inc. 担任软件工程实习生。</p>
-                    <p class="lang-tc">華盛頓大學 (UW) 電機與電腦工程專業大三本科生。目前在 Alexander V. Mamishev 教授的指導下於 <a href="https://www.uwseal.org/" target="_blank" class="about-link">SEAL</a> 實驗室進行研究，並將於 OnlyWorks Inc. 擔任軟體工程實習生。</p>
-                    
-                    <p class="lang-en">My current research focuses on enhancing 3D printing accessibility for visually challenged users (in collaboration with <a href="https://chesterpzh.github.io/chester-craft2-site/craft-square.html" target="_blank" class="about-link">CRAFT^2</a>) and developing computer vision algorithms for interactive HMD museum experiences. Skilled in Python (Backend & CV), SystemVerilog, Java, and C/C++ (Arduino). Always eager to build creative tech solutions.</p>
-                    <p class="lang-sc">我目前的研究方向主要集中于提升视障人群在 3D 打印过程中的无障碍体验（与 <a href="https://chesterpzh.github.io/chester-craft2-site/craft-square.html" target="_blank" class="about-link">CRAFT^2</a> 合作，负责后端 API 与自动化扫描机器设计），以及为头显 (HMD) 交互式博物馆体验开发计算机视觉 (CV) 算法。熟练掌握 Python (后端与 CV)、SystemVerilog、Java 以及 C/C++ (Arduino)。热爱通过技术创造有价值的解决方案。</p>
-                    <p class="lang-tc">我目前的研究方向主要集中於提升視障人群在 3D 列印過程中的無障礙體驗（與 <a href="https://chesterpzh.github.io/chester-craft2-site/craft-square.html" target="_blank" class="about-link">CRAFT^2</a> 合作，負責後端 API 與自動化掃描機器設計），以及為頭顯 (HMD) 互動式博物館體驗開發電腦視覺 (CV) 演算法。熟練掌握 Python (後端與 CV)、SystemVerilog、Java 以及 C/C++ (Arduino)。熱愛透過技術創造有價值的解決方案。</p>
-                    
-                    <p class="lang-en"><strong>Email: dangqing@uw.edu</strong></p>
-                    <p class="lang-sc"><strong>邮箱: dangqing@uw.edu</strong></p>
-                    <p class="lang-tc"><strong>郵箱: dangqing@uw.edu</strong></p>
+        <div class="about-container">
+            <div class="profile-pic"></div>
+            <div class="about-info">
+                <h1 class="lang-en">Dangqing (Leonard) Liu</h1>
+                <h1 class="lang-sc">刘党庆 (Leonard)</h1>
+                <h1 class="lang-tc">劉黨慶 (Leonard)</h1>
+                
+                <p class="lang-en">Junior undergraduate student studying <a href="https://www.ece.uw.edu/" target="_blank" class="text-link">Electrical and Computer Engineering</a> at the University of Washington. Currently working in <a href="https://www.uwseal.org/" target="_blank" class="text-link">SEAL</a> under the guidance of Prof. Alexander V. Mamishev, working as a SWE Intern at <a href="https://www.only-works.com/about" target="_blank" class="text-link">OnlyWorks Inc.</a>, and serving as a Teaching Assistant for EE 393.</p>
+                
+                <p class="lang-sc">华盛顿大学 (UW) <a href="https://www.ece.uw.edu/" target="_blank" class="text-link">电气与计算机工程专业</a>大三本科生。目前在 Alexander V. Mamishev 教授的指导下于 <a href="https://www.uwseal.org/" target="_blank" class="text-link">SEAL</a> 实验室进行研究，在 <a href="https://www.only-works.com/about" target="_blank" class="text-link">OnlyWorks Inc.</a> 担任软件工程实习生，并担任 EE 393 课程的教学助理 (TA)。</p>
+                
+                <p class="lang-tc">華盛頓大學 (UW) <a href="https://www.ece.uw.edu/" target="_blank" class="text-link">電機與電腦工程專業</a>大三本科生。目前在 Alexander V. Mamishev 教授的指導下於 <a href="https://www.uwseal.org/" target="_blank" class="text-link">SEAL</a> 實驗室進行研究，在 <a href="https://www.only-works.com/about" target="_blank" class="text-link">OnlyWorks Inc.</a> 擔任軟體工程實習生，並擔任 EE 393 課程的教學助理 (TA)。</p>
+                
+                <p class="lang-en">My current research focuses on enhancing 3D printing accessibility for visually challenged users (in collaboration with <a href="https://chesterpzh.github.io/chester-craft2-site/craft-square.html" target="_blank" class="text-link">CRAFT^2</a>) and developing computer vision algorithms for interactive HMD museum experiences. Skilled in Python (Backend & CV), SystemVerilog, Java, and C/C++ (Arduino). Always eager to build creative tech solutions.</p>
+                
+                <p class="lang-sc">我目前的研究方向主要集中于提升视障人群在 3D 打印过程中的无障碍体验（与 <a href="https://chesterpzh.github.io/chester-craft2-site/craft-square.html" target="_blank" class="text-link">CRAFT^2</a> 合作，负责后端 API 与自动化扫描机器设计），以及为头显 (HMD) 交互式博物馆体验开发计算机视觉 (CV) 算法。熟练掌握 Python (后端与 CV)、SystemVerilog、Java 以及 C/C++ (Arduino)。热爱通过技术创造有价值的解决方案。</p>
+                
+                <p class="lang-tc">我目前的研究方向主要集中於提升視障人群在 3D 列印過程中的無障礙體驗（與 <a href="https://chesterpzh.github.io/chester-craft2-site/craft-square.html" target="_blank" class="text-link">CRAFT^2</a> 合作，負責後端 API 與自動化掃描機器設計），以及為頭顯 (HMD) 互動式博物館體驗開發電腦視覺 (CV) 演算法。熟練掌握 Python (後端與 CV)、SystemVerilog、Java 以及 C/C++ (Arduino)。熱愛透過技術創造有價值的解決方案。</p>
+                
+                <p><strong>Email:</strong> dangqing@uw.edu</p>
 
-                    <div class="social-links">
-                        <a href="https://github.com/dangqingliu" target="_blank" title="GitHub">
-                            <img src="github-logo.png" alt="GitHub" class="social-icon">
-                        </a>
-                        <a href="https://www.linkedin.com/in/dangqing-l-209368336/" target="_blank" title="LinkedIn">
-                            <img src="linkedin-logo.png" alt="LinkedIn" class="social-icon">
-                        </a>
-                    </div>
+                <div class="social-links">
+                    <a href="https://github.com/dangqingliu" target="_blank" title="GitHub" class="social-icon">
+                        <img src="github-logo.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/dangqing-l-209368336/" target="_blank" title="LinkedIn" class="social-icon">
+                        <img src="linkedin-logo.png" alt="LinkedIn">
+                    </a>
+                    <a href="https://orcid.org/0009-0005-0674-139X" target="_blank" title="ORCID" class="social-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="content-panel" style="margin-top: 20px;">
-            <div class="news-section" style="margin-top: 0; border-top: none; padding-top: 0;">
-                <h2 class="lang-en" style="color: var(--primary); margin-top: 0;">News</h2>
-                <h2 class="lang-sc" style="color: var(--primary); margin-top: 0;">最新动态</h2>
-                <h2 class="lang-tc" style="color: var(--primary); margin-top: 0;">最新動態</h2>
+        <div class="lang-en"><div class="cv-section-title">News & Updates</div></div>
+        <div class="lang-sc"><div class="cv-section-title">最新动态</div></div>
+        <div class="lang-tc"><div class="cv-section-title">最新動態</div></div>
 
-                <div class="news-item">
-                    <div class="news-date">Mar 2026</div>
-                    <div class="lang-en">Accepted a SWE Intern position at OnlyWorks Inc., expected to start in April!</div>
-                    <div class="lang-sc">三月份被 OnlyWorks 公司录取 SWE Intern 职位，预计四月份入职！</div>
-                    <div class="lang-tc">三月份被 OnlyWorks 公司錄取 SWE Intern 職位，預計四月份入職！</div>
-                </div>
+        <div class="news-item">
+            <div class="news-date">Apr 2026</div>
+            <div class="lang-en news-content">Paper "Personal 3D Printing Visual Dependency..." was accepted to the ACM DIS 2026 conference and will be published soon!</div>
+            <div class="lang-sc news-content">论文 "Personal 3D Printing Visual Dependency..." 已被 ACM DIS 2026 会议正式接收，即将发表！</div>
+            <div class="lang-tc news-content">論文 "Personal 3D Printing Visual Dependency..." 已被 ACM DIS 2026 會議正式接收，即將發表！</div>
+        </div>
 
-                <div class="news-item">
-                    <div class="news-date">Feb 2026</div>
-                    <div class="lang-en">The CRAFT^2 wearable navigation aid project will be exhibited at this year's UW Undergraduate Research Symposium.</div>
-                    <div class="lang-sc">CRAFT^2 穿戴式导航辅助项目将于今年的华盛顿大学本科生研究研讨会 (UW Symposium) 上展出。</div>
-                    <div class="lang-tc">CRAFT^2 穿戴式導航輔助專案將於今年的華盛頓大學本科生研究研討會 (UW Symposium) 上展出。</div>
-                </div>
+        <div class="news-item">
+            <div class="news-date">Apr 2026</div>
+            <div class="lang-en news-content">Started working as a Teaching Assistant for EE 393 under Prof. Alex Mamishev.</div>
+            <div class="lang-sc news-content">入职成为 EE 393 课程的教学助理 (TA)，指导教授为 Alex Mamishev。</div>
+            <div class="lang-tc news-content">入職成為 EE 393 課程的教學助理 (TA)，指導教授為 Alex Mamishev。</div>
+        </div>
 
-                <div class="news-item">
-                    <div class="news-date">Feb 2026</div>
-                    <div class="lang-en">Paper "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges" delivered to ACM SIGCHI Conference on Designing Interactive Systems</div>
-                    <div class="lang-sc">论文 "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges" 已投递至 ACM SIGCHI Conference on Designing Interactive Systems</div>
-                    <div class="lang-tc">論文 "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges" 已投遞至 ACM SIGCHI Conference on Designing Interactive Systems</div>
-                </div>
+        <div class="news-item">
+            <div class="news-date">Apr 2026</div>
+            <div class="lang-en news-content">Successfully became an ECE Department Honors Candidate.</div>
+            <div class="lang-sc news-content">成功入选华盛顿大学 ECE 学院 Department Honors 荣誉候选人。</div>
+            <div class="lang-tc news-content">成功入選華盛頓大學 ECE 學院 Department Honors 榮譽候選人。</div>
+        </div>
 
-                <div class="news-item">
-                    <div class="news-date">Jan 2026</div>
-                    <div class="lang-en">Joined Sensors, Energy, and Automation Laboratory UW as an Undergraduate Student Assistant.</div>
-                    <div class="lang-sc">加入 UW Sensors, Energy, and Automation Laboratory，担任本科生研究助理。</div>
-                    <div class="lang-tc">加入 UW Sensors, Energy, and Automation Laboratory，擔任本科生研究助理。</div>
-                </div>
-                
-                <div class="news-item">
-                    <div class="news-date">Oct 2024</div>
-                    <div class="lang-en">Joined the CRAFT2 project as an Undergraduate Student Assistant.</div>
-                    <div class="lang-sc">加入 CRAFT^2 团队，担任本科生研究助理。</div>
-                    <div class="lang-tc">加入 CRAFT^2 團隊，擔任本科生研究助理。</div>
-                </div>
-            </div>
+        <div class="news-item">
+            <div class="news-date">Apr 2026</div>
+            <div class="lang-en news-content">Officially started my SWE Internship at OnlyWorks Inc., focusing on UI/UX and database optimization.</div>
+            <div class="lang-sc news-content">正式入职 OnlyWorks 公司软件工程实习生，开始着手解决 UI/UX 与数据库相关任务。</div>
+            <div class="lang-tc news-content">正式入職 OnlyWorks 公司軟體工程實習生，開始著手解決 UI/UX 與資料庫相關任務。</div>
+        </div>
+
+        <div class="news-item">
+            <div class="news-date">Mar 2026</div>
+            <div class="lang-en news-content">Accepted a SWE Intern position at OnlyWorks Inc., expected to start in April!</div>
+            <div class="lang-sc news-content">接受了 OnlyWorks Inc. 软件工程实习生 (SWE Intern) 的录用，预计于四月入职！</div>
+            <div class="lang-tc news-content">接受了 OnlyWorks Inc. 軟體工程實習生 (SWE Intern) 的錄用，預計於四月入職！</div>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-date">Feb 2026</div>
+            <div class="lang-en news-content">The CRAFT^2 wearable navigation aid project will be exhibited at this year's UW Undergraduate Research Symposium.</div>
+            <div class="lang-sc news-content">CRAFT^2 穿戴式导航辅助项目将于今年的华盛顿大学本科生研究研讨会 (UW Symposium) 上展出。</div>
+            <div class="lang-tc news-content">CRAFT^2 穿戴式導航輔助專案將於今年的華盛頓大學本科生研究研討會 (UW Symposium) 上展出。</div>
+        </div>
+
+        <div class="news-item">
+            <div class="news-date">Feb 2026</div>
+            <div class="lang-en news-content">Paper "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges" delivered to ACM SIGCHI Conference on Designing Interactive Systems.</div>
+            <div class="lang-sc news-content">论文 "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges" 已投递至 ACM SIGCHI Conference on Designing Interactive Systems。</div>
+            <div class="lang-tc news-content">論文 "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges" 已投遞至 ACM SIGCHI Conference on Designing Interactive Systems。</div>
+        </div>
+
+        <div class="news-item">
+            <div class="news-date">Jan 2026</div>
+            <div class="lang-en news-content">Joined Sensors, Energy, and Automation Laboratory UW as an Undergraduate Student Assistant.</div>
+            <div class="lang-sc news-content">加入 UW Sensors, Energy, and Automation Laboratory，担任本科生研究助理。</div>
+            <div class="lang-tc news-content">加入 UW Sensors, Energy, and Automation Laboratory，擔任本科生研究助理。</div>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-date">Oct 2024</div>
+            <div class="lang-en news-content">Joined the CRAFT2 project as an Undergraduate Student Assistant.</div>
+            <div class="lang-sc news-content">加入 CRAFT^2 团队，担任本科生研究助理。</div>
+            <div class="lang-tc news-content">加入 CRAFT^2 團隊，擔任本科生研究助理。</div>
         </div>
     </section>
 
     <section id="projects" class="tab-content">
         <div class="cv-header">
-            <h2 class="lang-en" style="margin: 0; color: var(--primary);">My Projects</h2>
-            <h2 class="lang-sc" style="margin: 0; color: var(--primary);">我的项目</h2>
-            <h2 class="lang-tc" style="margin: 0; color: var(--primary);">我的專案</h2>
+            <h2 class="lang-en">Projects</h2>
+            <h2 class="lang-sc">我的项目</h2>
+            <h2 class="lang-tc">我的專案</h2>
         </div>
         <div class="project-grid">
-            <div class="project-card" style="background-image: url('default.jpg');" onclick="openModal('HMD Interactive Museum Experience', 'Developed computer vision algorithms in Python to enable clickable, interactive paintings for Head-Mounted Display (HMD) users in museum settings.', 'https://github.com/dangqingliu/3dgs-autowarp')">
+            <div class="project-card" onclick="openModal('HMD Interactive Museum Experience', 'Developed computer vision algorithms in Python to enable clickable, interactive paintings for Head-Mounted Display (HMD) users in museum settings.', 'https://github.com/dangqingliu/3dgs-autowarp')">
+                <img src="default.jpg" alt="HMD">
                 <div class="project-overlay">HMD Interactive Museum</div>
             </div>
             
-            <div class="project-card" style="background-image: url('dodge.jpg');" onclick="openModal('Arcade 3-Lane Dodger', 'Designed and implemented a retro arcade game on a DE1-SoC FPGA board using SystemVerilog. Programmed custom digital logic for real-time collision detection.', 'https://github.com/dangqingliu/Arcade-3-Lane-Dodger-on-DE1-SoC')">
-                <div class="project-overlay">Arcade 3-Lane Dodger (DE1-SoC)</div>
+            <div class="project-card" onclick="openModal('Arcade 3-Lane Dodger', 'Designed and implemented a retro arcade game on a DE1-SoC FPGA board using SystemVerilog. Programmed custom digital logic for real-time collision detection.', 'https://github.com/dangqingliu/Arcade-3-Lane-Dodger-on-DE1-SoC')">
+                <img src="dodge.jpg" alt="Dodge">
+                <div class="project-overlay">Arcade 3-Lane Dodger</div>
             </div>
             
-            <div class="project-card" style="background-image: url('craft2.jpg');" onclick="openModal('CRAFT2 Wearable Aid', 'Developed a wearable navigation aid for visually impaired users. Designed the motor actuation subsystem using Arduino Nano.', '')">
+            <div class="project-card" onclick="openModal('CRAFT2 Wearable Aid', 'Developed a wearable navigation aid for visually impaired users. Designed the motor actuation subsystem using Arduino Nano.', '')">
+                <img src="craft2.jpg" alt="CRAFT">
                 <div class="project-overlay">CRAFT^2 Tangible Compass</div>
             </div>
             
-            <div class="project-card" style="background-image: url('default.jpg');" onclick="openModal('3D Printing System', 'Developing a Python backend with OpenAI API for remote 3D printing management and optimizing automated workflows.', '')">
+            <div class="project-card" onclick="openModal('3D Printing System', 'Developing a Python backend with OpenAI API for remote 3D printing management and optimizing automated workflows.', '')">
+                <img src="default.jpg" alt="3D">
                 <div class="project-overlay">3D Printing System</div>
             </div>
             
-            <div class="project-card" style="background-image: url('robot.jpg');" onclick="openModal('Line-Tracking Robot', 'Built an autonomous robot using Arduino Mega. Programmed custom PID-based control logic and 3D-modeled the chassis.', '')">
+            <div class="project-card" onclick="openModal('Line-Tracking Robot', 'Built an autonomous robot using Arduino Mega. Programmed custom PID-based control logic and 3D-modeled the chassis.', '')">
+                <img src="robot.jpg" alt="Robot">
                 <div class="project-overlay">Line-Tracking Robot</div>
             </div>
         </div>
@@ -418,39 +432,46 @@
 
     <section id="cv" class="tab-content">
         <div class="cv-header">
-            <h2 class="lang-en" style="margin: 0; color: var(--primary);">Curriculum Vitae</h2>
-            <h2 class="lang-sc" style="margin: 0; color: var(--primary);">个人简历</h2>
-            <h2 class="lang-tc" style="margin: 0; color: var(--primary);">個人簡歷</h2>
-            <a href="DangqingLiu_Resume.pdf" class="download-btn" target="_blank" style="background: var(--primary); color: white; padding: 8px 16px; border-radius: var(--radius-button); text-decoration: none;">📄 Download PDF</a>
+            <h2 class="lang-en">Curriculum Vitae</h2>
+            <h2 class="lang-sc">个人简历</h2>
+            <h2 class="lang-tc">個人簡歷</h2>
+            <a href="DangqingLiu_Resume.pdf" class="underline-hover" target="_blank" style="font-weight: 600; font-family: 'Space Grotesk'; text-transform: uppercase;">Download PDF ↘</a>
         </div>
         
-        <div class="cv-section-title lang-en">Education</div>
-        <div class="cv-section-title lang-sc">教育背景</div>
-        <div class="cv-section-title lang-tc">教育背景</div>
+        <div class="lang-en"><div class="cv-section-title">Education</div></div>
+        <div class="lang-sc"><div class="cv-section-title">教育背景</div></div>
+        <div class="lang-tc"><div class="cv-section-title">教育背景</div></div>
         
         <div class="cv-item">
             <div class="cv-item-header">
                 <span>University of Washington (UW)</span>
                 <span>Seattle, WA</span>
             </div>
-            <div class="cv-item-subheader">
-                <span class="lang-en">Bachelor of Science in Electrical and Computer Engineering (ECE)</span>
-                <span class="lang-sc">电气与计算机工程 (ECE) 理学学士</span>
-                <span class="lang-tc">電機與電腦工程 (ECE) 理學學士</span>
-                <span>Sep. 2024 - Jun. 2027</span>
+        <div class="cv-item-subheader">
+                <span class="lang-en degree-text">Bachelor of Science in Electrical and Computer Engineering (ECE)</span>
+                <span class="lang-sc degree-text">电气与计算机工程 (ECE) 理学学士</span>
+                <span class="lang-tc degree-text">電機與電腦工程 (ECE) 理學學士</span>
+                <span class="date-text">Sep. 2024 - Jun. 2027</span>
             </div>
+            <p class="lang-en" style="margin-bottom: 5px;"><i>Honors & Awards:</i> ECE Department Honors Candidate</p>
+            <p class="lang-sc" style="margin-bottom: 5px;"><i>荣誉与奖项：</i> ECE 学院荣誉学位候选人 (Department Honors)</p>
+            <p class="lang-tc" style="margin-bottom: 5px;"><i>榮譽與獎項：</i> ECE 學院榮譽學位候選人 (Department Honors)</p>
             <p class="lang-en"><i>Relevant Coursework:</i> Signal Processing, Digital Circuits, Computer Hardware, Scientific Computing.</p>
             <p class="lang-sc"><i>核心课程：</i> 信号处理、数字电路与系统、计算机硬件技能、科学计算等。</p>
             <p class="lang-tc"><i>核心課程：</i> 訊號處理、數位電路與系統、電腦硬體技能、科學計算等。</p>
         </div>
 
-        <div class="cv-section-title lang-en">Skills & Competencies</div>
-        <div class="cv-section-title lang-sc">技能专长</div>
-        <div class="cv-section-title lang-tc">技能专长</div>
+        <div class="lang-en"><div class="cv-section-title">Skills & Competencies</div></div>
+        <div class="lang-sc"><div class="cv-section-title">技能专长</div></div>
+        <div class="lang-tc"><div class="cv-section-title">技能专长</div></div>
+        
         <div class="tags">
             <span class="tag">Python (FastAPI & CV)</span> 
             <span class="tag">SystemVerilog</span>
             <span class="tag">Java</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">UI/UX Design</span>
+            <span class="tag">Supabase</span>
             <span class="tag">C/C++ (for Arduino)</span> 
             <span class="tag">PCB Design (KiCad)</span>
             <span class="tag">FPGA & Modelsim</span> 
@@ -459,20 +480,71 @@
             <span class="tag">Git/Linux</span>
         </div>
 
-        <div class="cv-section-title lang-en">Research Experience</div>
-        <div class="cv-section-title lang-sc">研究经历</div>
-        <div class="cv-section-title lang-tc">研究經驗</div>
+        <div class="lang-en"><div class="cv-section-title">Work & Teaching Experience</div></div>
+        <div class="lang-sc"><div class="cv-section-title">工作与教学经历</div></div>
+        <div class="lang-tc"><div class="cv-section-title">工作與教學經歷</div></div>
 
         <div class="cv-item">
             <div class="cv-item-header">
-                <span>Sensors, Energy, and Automation Laboratory (SEAL) UW</span>
+                <span>OnlyWorks Inc.</span>
                 <span>Seattle, WA</span>
             </div>
             <div class="cv-item-subheader">
-                <span class="lang-en">Undergraduate Research Assistant</span>
-                <span class="lang-sc">本科生研究助理</span>
-                <span class="lang-tc">本科生研究助理</span>
-                <span>Jan. 2026 - Present</span>
+                <span class="lang-en degree-text">Software Engineering Intern</span>
+                <span class="lang-sc degree-text">软件工程实习生</span>
+                <span class="lang-tc degree-text">軟體工程實習生</span>
+                <span class="date-text">Apr. 2026 - Present</span>
+            </div>
+            <ul class="lang-en">
+                <li>Addressing UI/UX design challenges and developing frontend features using JavaScript to improve user interaction flow and frontend performance.</li>
+                <li>Optimizing backend database structures and integrating Supabase to ensure efficient data retrieval and system scalability.</li>
+            </ul>
+            <ul class="lang-sc">
+                <li>负责处理平台 UI/UX 设计挑战，并使用 JavaScript 开发前端功能以提升用户交互流程与前端性能。</li>
+                <li>优化后端数据库结构并整合 Supabase，确保高效的数据检索与系统的可扩展性。</li>
+            </ul>
+            <ul class="lang-tc">
+                <li>負責處理平台 UI/UX 設計挑戰，並使用 JavaScript 開發前端功能以提升用戶互動流程與前端性能。</li>
+                <li>優化後端資料庫結構並整合 Supabase，確保高效的資料檢索與系統的可擴展性。</li>
+            </ul>
+        </div>
+
+        <div class="cv-item">
+            <div class="cv-item-header">
+                <span>University of Washington (EE 393)</span>
+                <span>Seattle, WA</span>
+            </div>
+            <div class="cv-item-subheader">
+                <span class="lang-en degree-text">Teaching Assistant</span>
+                <span class="lang-sc degree-text">课程教学助理 (TA)</span>
+                <span class="lang-tc degree-text">課程教學助理 (TA)</span>
+                <span class="date-text">Apr. 2026 - Present</span>
+            </div>
+            <ul class="lang-en">
+                <li>Assisting Prof. Alex Mamishev in EE 393 course operations, guiding students through technical writing and communication concepts.</li>
+            </ul>
+            <ul class="lang-sc">
+                <li>协助 Alex Mamishev 教授进行 EE 393 课程的教学工作，辅导学生掌握技术写作与专业沟通技巧。</li>
+            </ul>
+            <ul class="lang-tc">
+                <li>協助 Alex Mamishev 教授進行 EE 393 課程的教學工作，輔導學生掌握技術寫作與專業溝通技巧。</li>
+            </ul>
+        </div>
+
+        <div class="lang-en"><div class="cv-section-title">Research Experience</div></div>
+        <div class="lang-sc"><div class="cv-section-title">研究经历</div></div>
+        <div class="lang-tc"><div class="cv-section-title">研究經驗</div></div>
+
+        <div class="cv-item">
+            <div class="cv-item-header">
+                <span>Sensors, Energy, and Automation Laboratory (SEAL)</span>
+                <span>Seattle, WA</span>
+            </div>
+            <div class="cv-item-subheader">
+                <span class="lang-en degree-text">Undergraduate Research Assistant</span>
+                <span class="lang-sc degree-text">本科生研究助理</span>
+                <span class="lang-tc degree-text">本科生研究助理</span>
+                <span class="date-text">Jan. 2026 - Present</span>
             </div>
             <ul class="lang-en">
                 <li>Supporting multiple research groups, including a smart sensor integration project, by conducting comprehensive literature reviews and summarizing key findings to accelerate project ideation.</li>
@@ -480,11 +552,11 @@
             </ul>
             <ul class="lang-sc">
                 <li>协助多个研究组（包括一项智能传感器集成项目）进行全面的文献检索与系统综述，提炼核心论点以加速项目前期调研。</li>
-                <li>负责学术论文的排版、语法润色及格式校对，确保手稿严格符合顶级会议与期刊的收录标准。</li>
+                <li>负责学术论文的撰写、排版及格式校对，确保手稿严格符合顶级会议与期刊的收录标准。</li>
             </ul>
             <ul class="lang-tc">
                 <li>協助多個研究組（包括一項智慧感測器整合專案）進行全面的文獻檢索與系統綜述，提煉核心論點以加速專案前期調研。</li>
-                <li>負責學術論文的排版、語法潤飾及格式校對，確保手稿嚴格符合頂級會議與期刊的收錄標準。</li>
+                <li>負責學術論文的撰寫、排版及格式校對，確保手稿嚴格符合頂級會議與期刊的收錄標準。</li>
             </ul>
         </div>
 
@@ -494,10 +566,10 @@
                 <span>Seattle, WA</span>
             </div>
             <div class="cv-item-subheader">
-                <span class="lang-en">Undergraduate Research Assistant</span>
-                <span class="lang-sc">本科生研究助理</span>
-                <span class="lang-tc">本科生研究助理</span>
-                <span>Oct. 2024 - Present</span>
+                <span class="lang-en degree-text">Undergraduate Research Assistant</span>
+                <span class="lang-sc degree-text">本科生研究助理</span>
+                <span class="lang-tc degree-text">本科生研究助理</span>
+                <span class="date-text">Oct. 2024 - Present</span>
             </div>
             <ul class="lang-en">
                 <li>Developing a wearable navigation aid for visually impaired users using haptic feedback.</li>
@@ -507,18 +579,18 @@
             <ul class="lang-sc">
                 <li>为视障用户开发集成触觉反馈马达的穿戴式导航辅助设备。</li>
                 <li>使用 Arduino Nano 与 DRV8833 设计并制作了马达执行子系统原型。</li>
-                <li>协作集成 Google Maps API 和 WatchOS 雷达输入，实现实时避障与路径引导。</li>
+                <li>合作整合 Google Maps API 与 WatchOS 雷达，实现障碍物检测功能。</li>
             </ul>
             <ul class="lang-tc">
                 <li>為視障用戶開發整合觸覺回饋馬達的穿戴式導航輔助設備。</li>
                 <li>使用 Arduino Nano 與 DRV8833 設計並製作了馬達執行子系統原型。</li>
-                <li>協作整合 Google Maps API 和 WatchOS 雷達輸入，實現即時避障與路徑引導。</li>
+                <li>合作整合 Google Maps API 與 WatchOS 雷達，實現障礙物檢測功能。</li>
             </ul>
         </div>
 
-        <div class="cv-section-title lang-en">Engineering Projects</div>
-        <div class="cv-section-title lang-sc">工程经验与项目</div>
-        <div class="cv-section-title lang-tc">工程經驗與專案</div>
+        <div class="lang-en"><div class="cv-section-title">Engineering Projects</div></div>
+        <div class="lang-sc"><div class="cv-section-title">工程项目</div></div>
+        <div class="lang-tc"><div class="cv-section-title">工程專案</div></div>
 
         <div class="cv-item">
             <div class="cv-item-header">
@@ -526,22 +598,22 @@
                 <span>Seattle, WA</span>
             </div>
             <div class="cv-item-subheader">
-                <span class="lang-en">Algorithm Developer</span>
-                <span class="lang-sc">算法开发</span>
-                <span class="lang-tc">演算法開發</span>
-                <span>Mar. 2026 - Present</span>
+                <span class="lang-en degree-text">Algorithm Developer</span>
+                <span class="lang-sc degree-text">算法开发者</span>
+                <span class="lang-tc degree-text">演算法開發者</span>
+                <span class="date-text">Mar. 2026 - Present</span>
             </div>
             <ul class="lang-en">
                 <li>Developing Python-based computer vision (CV) algorithms to render museum paintings interactive and clickable for Head-Mounted Display (HMD) users.</li>
                 <li>Processing dynamic visual inputs to precisely align virtual interactions with physical environments.</li>
             </ul>
             <ul class="lang-sc">
-                <li>开发基于 Python 的计算机视觉 (CV) 算法，使用户在佩戴头显 (HMD) 步入博物馆时能与画作进行点击交互。</li>
-                <li>处理动态视觉输入，精确对齐虚拟交互与现实物理环境。</li>
+                <li>开发基于 Python 的计算机视觉 (CV) 算法，使博物馆画作在头显 (HMD) 中呈现可点击的交互效果。</li>
+                <li>处理动态视觉输入，将虚拟交互与物理环境精准对齐。</li>
             </ul>
             <ul class="lang-tc">
-                <li>開發基於 Python 的電腦視覺 (CV) 演算法，使用戶在佩戴頭顯 (HMD) 步入博物館時能與畫作進行點擊互動。</li>
-                <li>處理動態視覺輸入，精確對齊虛擬互動與現實物理環境。</li>
+                <li>開發基於 Python 的電腦視覺 (CV) 演算法，使博物館畫作在頭顯 (HMD) 中呈現可點擊的互動效果。</li>
+                <li>處理動態視覺輸入，將虛擬互動與物理環境精準對齊。</li>
             </ul>
         </div>
 
@@ -551,22 +623,22 @@
                 <span>Seattle, WA</span>
             </div>
             <div class="cv-item-subheader">
-                <span class="lang-en">FPGA Developer</span>
-                <span class="lang-sc">FPGA 开发者</span>
-                <span class="lang-tc">FPGA 開發者</span>
-                <span>Mar. 2026</span>
+                <span class="lang-en degree-text">FPGA Developer</span>
+                <span class="lang-sc degree-text">FPGA 开发者</span>
+                <span class="lang-tc degree-text">FPGA 開發者</span>
+                <span class="date-text">Mar. 2026</span>
             </div>
             <ul class="lang-en">
                 <li>Designed and implemented a retro arcade game on a DE1-SoC FPGA board using SystemVerilog.</li>
                 <li>Programmed custom digital logic for real-time collision detection, user input processing, and LED display rendering.</li>
             </ul>
             <ul class="lang-sc">
-                <li>使用 SystemVerilog 在 DE1-SoC FPGA 开发板上设计并实现了一款复古街机躲避游戏。</li>
-                <li>编写自定义数字逻辑，实现实时碰撞检测、用户输入处理和 LED 阵列渲染。</li>
+                <li>使用 SystemVerilog 在 DE1-SoC FPGA 开发板上设计并实现了一款复古街机游戏。</li>
+                <li>为实时碰撞检测、用户输入处理及 LED 显示渲染编写了定制的数字逻辑。</li>
             </ul>
             <ul class="lang-tc">
-                <li>使用 SystemVerilog 在 DE1-SoC FPGA 開發板上設計並實現了一款復古街機躲避遊戲。</li>
-                <li>編寫自定義數位邏輯，實現即時碰撞檢測、用戶輸入處理和 LED 陣列渲染。</li>
+                <li>使用 SystemVerilog 在 DE1-SoC FPGA 開發板上設計並實現了一款復古街機遊戲。</li>
+                <li>為即時碰撞檢測、使用者輸入處理及 LED 顯示渲染編寫了客製化的數位邏輯。</li>
             </ul>
         </div>
 
@@ -576,44 +648,45 @@
                 <span>Seattle, WA</span>
             </div>
             <div class="cv-item-subheader">
-                <span class="lang-en">Project Lead / Developer</span>
-                <span class="lang-sc">项目负责人 / 开发者</span>
-                <span class="lang-tc">專案負責人 / 開發者</span>
-                <span>Nov. 2025 - Present</span>
+                <span class="lang-en degree-text">Project Lead / Developer</span>
+                <span class="lang-sc degree-text">项目负责人 / 开发者</span>
+                <span class="lang-tc degree-text">專案負責人 / 開發者</span>
+                <span class="date-text">Nov. 2025 - Present</span>
             </div>
             <ul class="lang-en">
                 <li>Developing a Python backend with OpenAI API for remote 3D printing management.</li>
                 <li>Implementing ESP32-CAM monitoring with motor encoder feedback for workflow optimization.</li>
             </ul>
             <ul class="lang-sc">
-                <li>开发基于 Python 后端并接入 OpenAI API 的远程 3D 打印监控管理系统。</li>
-                <li>通过 ESP32-CAM 监控和马达编码器反馈优化自动化打印流程。</li>
+                <li>开发集成 OpenAI API 的 Python 后端，用于远程 3D 打印管理。</li>
+                <li>实现 ESP32-CAM 监控与电机编码器反馈，以优化自动化工作流。</li>
             </ul>
             <ul class="lang-tc">
-                <li>開發基於 Python 後端並接入 OpenAI API 的遠端 3D 列印監控管理系統。</li>
-                <li>透過 ESP32-CAM 監控和馬達編碼器回饋優化自動化列印流程。</li>
+                <li>開發整合 OpenAI API 的 Python 後端，用於遠端 3D 列印管理。</li>
+                <li>實現 ESP32-CAM 監控與馬達編碼器回饋，以優化自動化工作流。</li>
             </ul>
         </div>
 
-        <div class="cv-section-title lang-en">Publications</div>
-        <div class="cv-section-title lang-sc">发表论文</div>
-        <div class="cv-section-title lang-tc">發表論文</div>
+        <div class="lang-en"><div class="cv-section-title">Publications</div></div>
+        <div class="lang-sc"><div class="cv-section-title">发表论文</div></div>
+        <div class="lang-tc"><div class="cv-section-title">發表論文</div></div>
         
         <div class="cv-item">
-            <p class="lang-en">Dangqing Liu, et al. "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges." <i>ACM SIGCHI Conference on Designing Interactive Systems (Under Review)</i>, 2026.</p>
-            <p class="lang-sc">Dangqing Liu, 等. "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges." <i>ACM SIGCHI Conference on Designing Interactive Systems (审稿中)</i>, 2026.</p>
-            <p class="lang-tc">Dangqing Liu, 等. "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges." <i>ACM SIGCHI Conference on Designing Interactive Systems (審稿中)</i>, 2026.</p>
+            <p class="lang-en">Dangqing Liu, et al. "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges." <i>ACM SIGCHI Conference on Designing Interactive Systems (Accepted, In Press)</i>, 2026.</p>
+            <p class="lang-sc">Dangqing Liu, 等. "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges." <i>ACM SIGCHI Conference on Designing Interactive Systems (已正式接收)</i>, 2026.</p>
+            <p class="lang-tc">Dangqing Liu, 等. "Personal 3D Printing Visual Dependency in the Generative AI Era: Opportunities and Challenges." <i>ACM SIGCHI Conference on Designing Interactive Systems (已正式接收)</i>, 2026.</p>
         </div>
 
         <div class="cv-item">
-            <p class="lang-en">Dangqing Liu. "The Current Study and Potential Treatment of Drug Abuse." <i>Theoretical and Natural Science</i> 4(1): 316-320, 2023. <a href="https://doi.org/10.54254/2753-8818/4/20220578" target="_blank" class="about-link">DOI: 10.54254/2753-8818/4/20220578</a></p>
-            <p class="lang-sc">Dangqing Liu. "The Current Study and Potential Treatment of Drug Abuse." <i>Theoretical and Natural Science</i> 4(1): 316-320, 2023. <a href="https://doi.org/10.54254/2753-8818/4/20220578" target="_blank" class="about-link">DOI: 10.54254/2753-8818/4/20220578</a></p>
-            <p class="lang-tc">Dangqing Liu. "The Current Study and Potential Treatment of Drug Abuse." <i>Theoretical and Natural Science</i> 4(1): 316-320, 2023. <a href="https://doi.org/10.54254/2753-8818/4/20220578" target="_blank" class="about-link">DOI: 10.54254/2753-8818/4/20220578</a></p>
+            <p class="lang-en">Dangqing Liu. "The Current Study and Potential Treatment of Drug Abuse." <i>Theoretical and Natural Science</i> 4(1): 316-320, 2023. <a href="https://doi.org/10.54254/2753-8818/4/20220578" target="_blank" class="text-link">DOI</a></p>
+            <p class="lang-sc">Dangqing Liu. "The Current Study and Potential Treatment of Drug Abuse." <i>Theoretical and Natural Science</i> 4(1): 316-320, 2023. <a href="https://doi.org/10.54254/2753-8818/4/20220578" target="_blank" class="text-link">DOI</a></p>
+            <p class="lang-tc">Dangqing Liu. "The Current Study and Potential Treatment of Drug Abuse." <i>Theoretical and Natural Science</i> 4(1): 316-320, 2023. <a href="https://doi.org/10.54254/2753-8818/4/20220578" target="_blank" class="text-link">DOI</a></p>
         </div>
-
-        <div class="cv-section-title lang-en">Activities & Interests</div>
-        <div class="cv-section-title lang-sc">课外活动与兴趣</div>
-        <div class="cv-section-title lang-tc">課外活動與興趣</div>
+        
+        <div class="lang-en"><div class="cv-section-title">Activities & Interests</div></div>
+        <div class="lang-sc"><div class="cv-section-title">课外活动与兴趣</div></div>
+        <div class="lang-tc"><div class="cv-section-title">課外活動與興趣</div></div>
+        
         <ul class="lang-en">
             <li><strong>UW SOLAR:</strong> Evaluated solar canopy infrastructure at UW parking lots.</li>
             <li><strong>Interests:</strong> Piano Performance, Composition.</li>
@@ -630,44 +703,49 @@
 </main>
 
 <footer>
-    &copy; Copyright 2026 Dangqing Liu
+    <div style="opacity: 0.7; font-weight: 500; letter-spacing: 1px;">
+        &copy; Copyright 2026 Dangqing Liu
+    </div>
 </footer>
 
 <div id="projectModal" class="modal">
     <div class="modal-content">
         <button class="close-btn" onclick="closeModal()">&times;</button>
-        <h2 id="modalTitle" style="color: var(--primary);">Project Title</h2>
-        <p id="modalDesc">Project description goes here...</p>
+        <h2 id="modalTitle" style="color: var(--primary);">Title</h2>
+        <p id="modalDesc" style="color: var(--text); opacity: 0.9; margin-top: 20px; font-size: 1.05em; line-height: 1.6;"></p>
     </div>
 </div>
 
 <script>
+    let isDarkMode = false;
+    
+    // 初始化深色模式
     const currentHour = new Date().getHours();
     if (currentHour >= 19 || currentHour < 6) {
-        document.body.classList.add('dark-mode');
-        document.getElementById('checkbox').checked = true;
+        setDarkMode(true);
     }
 
-    window.addEventListener('scroll', function() {
-        const controls = document.querySelectorAll('.fixed-control');
-        if (window.scrollY > 30) {
-            controls.forEach(c => {
-                c.style.opacity = '0';
-                c.style.pointerEvents = 'none';
-            });
-        } else {
-            controls.forEach(c => {
-                c.style.opacity = '1';
-                c.style.pointerEvents = 'auto';
-            });
-        }
-    });
-
-    function toggleTheme(checkbox) {
-        if(checkbox.checked) {
+    function setDarkMode(enable) {
+        isDarkMode = enable;
+        const themeBtn = document.getElementById('themeToggleBtn');
+        if (enable) {
             document.body.classList.add('dark-mode');
+            if(themeBtn) themeBtn.innerText = '[ ☾ ]';
         } else {
             document.body.classList.remove('dark-mode');
+            if(themeBtn) themeBtn.innerText = '[ ☀ ]';
+        }
+    }
+
+    function toggleThemeMode() {
+        setDarkMode(!isDarkMode);
+    }
+
+    // 点击弹窗外部关闭弹窗
+    window.onclick = function(event) {
+        let modal = document.getElementById('projectModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
     }
 
@@ -676,44 +754,37 @@
         document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
         
         document.getElementById(tabId).classList.add('active');
-        document.querySelector(`.tab-btn[data-target="${tabId}"]`).classList.add('active');
-
-        // 控制右上角悬浮语言菜单的显示与隐藏
-        const floatingLang = document.getElementById('floatingLangWrapper');
-        if (tabId === 'home') {
-            floatingLang.style.display = 'none';
-        } else {
-            floatingLang.style.display = 'block';
-        }
+        // 同步点亮菜单中的按钮
+        const targetBtns = document.querySelectorAll(`.tab-btn[data-target="${tabId}"]`);
+        targetBtns.forEach(btn => btn.classList.add('active'));
+        
+        // 自动回到顶部
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
-    // 双向绑定语言选项：不论在哪里切换，两个下拉菜单的选项保持一致
     function setLanguage(lang) {
         document.body.setAttribute('data-lang', lang);
-        
-        const homeSelect = document.getElementById('homeLangSelect');
-        const floatingSelect = document.getElementById('floatingLangSelect');
-        
-        if (homeSelect) homeSelect.value = lang;
-        if (floatingSelect) floatingSelect.value = lang;
+        // 高亮当前选中的语言按钮
+        document.querySelectorAll('.tool-btn[id^="lang-"]').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.getElementById('lang-' + lang);
+        if(activeBtn) activeBtn.classList.add('active');
     }
 
+    // 弹窗控制函数
     function openModal(title, description, linkUrl) {
         document.getElementById('modalTitle').innerText = title;
         
         let finalHtml = description;
         if (linkUrl && linkUrl !== '') {
-            finalHtml += `<br><br><a href="${linkUrl}" target="_blank" style="color: var(--primary); font-weight: bold; text-decoration: none; display: inline-block; margin-top: 5px;">🔗 View on GitHub</a>`;
+            finalHtml += `<br><br><a href="${linkUrl}" target="_blank" class="underline-hover" style="font-weight: 600; font-family: 'Space Grotesk'; font-size: 0.95em; text-transform: uppercase;">Repository ↗</a>`;
         }
         
         document.getElementById('modalDesc').innerHTML = finalHtml; 
         document.getElementById('projectModal').style.display = 'flex';
     }
     
-    function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
-    window.onclick = function(event) {
-        let modal = document.getElementById('projectModal');
-        if (event.target == modal) { modal.style.display = "none"; }
+    function closeModal() {
+        document.getElementById('projectModal').style.display = 'none';
     }
 </script>
 
