@@ -8,8 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* 只有在不在首页的时候，把名字往下推 16px 来保持视觉正中央 */
-        body:not([data-current-tab="home"]) .header-name {
-            top: 16px; 
+        @media (min-width: 769px) {
+            body:not([data-current-tab="home"]) .header-name {
+                top: 16px; 
+            }
         }
         :root {
             /* 极简硬朗黑白灰主题 */
