@@ -46,6 +46,7 @@
             flex-direction: column;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased; 
+            overflow-x: hidden; /* 新增：切断一切横向溢出，保证手机端不能左右晃 */
         }
 
         h1, h2, h3, .header-name, .project-overlay, .tab-btn, .header-tools, .cv-section-title, .menu-toggle, .dropdown-item {
@@ -265,35 +266,43 @@
             position: relative; /* 为模糊块做准备 */
         }
 
-        /* --- 渐变融入版毛玻璃 --- */
-        .text-highlight-blur {
-            /* 1. 基础的背景色和模糊度稍微调强一点，因为边缘会变淡 */
-            background-color: rgba(240, 240, 240, 1.0); 
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            
-            /* 2. 核心魔法：径向渐变遮罩 (从中心的黑色不透明，过渡到边缘的透明) */
-            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-            mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
-            
-            /* 3. 撑开空间，让“云雾”有足够的地方向外渐变消散 */
-            padding: 60px 80px; 
-            margin: 0 auto;
-            max-width: 90%;
-            
-            /* 4. 既然是渐变融入，就不再需要硬边框、圆角和阴影了 */
-            border-radius: 0; 
-            border: none;
-            box-shadow: none; 
-        }
+    /* --- 彻底解绑版的渐变云雾 --- */
 
-        /* 深色模式下的适配 */
-        body.dark-mode .text-highlight-blur {
-            /* 深色模式下只需换个更深的底色，遮罩渐变效果会自动生效 */
-            background-color: rgba(20, 20, 20, 0.5); 
-            border: none;
-            box-shadow: none;
-        }
+    /* 1. 容器只负责装文字，没有任何 padding，绝不干扰你的垂直居中！ */
+    .text-highlight-blur {
+        position: relative;
+        width: 100%;
+        z-index: 1;
+    }
+
+    /* 2. 把云雾做成一个不受束缚的背后图层 */
+    .text-highlight-blur::before {
+        content: '';
+        position: absolute;
+        /* 让它绝对居中于文字 */
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        
+        /* 强行撑大尺寸，允许它飞出屏幕之外 */
+        width: 150vw; 
+        height: 180%; 
+        min-height: 400px;
+        z-index: -1;
+        pointer-events: none; /* 穿透点击，绝不挡事 */
+        
+        background-color: rgba(240, 240, 240, 0.9); 
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        
+        /* 渐变遮罩中心实心，边缘透明，自然融入背景 */
+        -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
+        mask-image: radial-gradient(ellipse at center, black 50%, transparent 70%);
+    }
+
+    /* 深色模式适配 */
+    body.dark-mode .text-highlight-blur::before {
+        background-color: rgba(20, 20, 20, 0.5); 
+    }
 
         /* 核心修复：只有当它被选中激活时，才触发 Flex 居中排版 */
         #home.active {
