@@ -34,20 +34,28 @@
             --panel-bg: #111111;
         }
 
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased; 
-            overflow-x: hidden; /* 新增：切断一切横向溢出，保证手机端不能左右晃 */
-        }
+/* 新增 html 的限制，锁死屏幕宽度 */
+html, body {
+    overflow-x: hidden; 
+    width: 100%; 
+    position: relative;
+}
+
+/* 原本 body 的其他样式保持不变 */
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased; 
+    /* overflow-x: hidden; 这一行可以删掉，因为上面已经定义了 */
+}
 
         h1, h2, h3, .header-name, .project-overlay, .tab-btn, .header-tools, .cv-section-title, .menu-toggle, .dropdown-item {
             font-family: 'Space Grotesk', "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
@@ -244,13 +252,16 @@
         .text-link:hover::after { width: 100%; }
 
         .underline-hover {
-            position: relative; text-decoration: none; color: var(--primary); display: inline-block; cursor: pointer;
-            /* 在你的 .underline-hover 样式里，或者直接写在 style 属性里 */
-            .home-more-btn {
-                margin-top: auto;   /* 核心：它会自动推开上方内容，占据剩余空间的一半 */
-                margin-bottom: auto; /* 核心：它会推开下方 footer 线，占据剩余空间的一半 */
-                /* 你原本的 font-weight, family 等保持不变 */
-            }
+            position: relative; 
+            text-decoration: none; 
+            color: var(--primary); 
+            display: inline-block; 
+            cursor: pointer;
+        }
+
+        .home-more-btn {
+            margin-top: auto;   
+            margin-bottom: auto; 
         }
         .underline-hover::after {
             content: ''; position: absolute; width: 0; height: 1.5px; bottom: 0; left: 0;
