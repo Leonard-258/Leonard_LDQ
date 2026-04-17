@@ -382,7 +382,11 @@
             .mobile-only { display: flex; align-items: center; gap: 15px; }   
             
             header { padding: 15px 25px; }
-            .header-name { font-size: 1.4em; }
+            .header-name { 
+                font-size: 1.35em;   /* 稍微再收一点点字号 */
+                letter-spacing: 1.6px; /* 核心：把原本宽屏的 5px 缩小到 1.5px */
+                transform: scaleY(1.05);  /* 可选：手机端取消字体的垂直拉长，看起来会更利落 */
+            }
 
             main { padding: 0 25px; }
             .about-container { flex-direction: column; gap: 20px; }
