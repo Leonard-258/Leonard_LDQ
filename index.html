@@ -476,7 +476,6 @@ body {
                 <div class="dropdown-item" data-mobile-target="about" onclick="switchTab('about')"><span class="menu-text"><span class="lang-en">ABOUT</span><span class="lang-sc">关于</span><span class="lang-tc">關於</span></span></div>
                 <div class="dropdown-item" data-mobile-target="projects" onclick="switchTab('projects')"><span class="menu-text"><span class="lang-en">PROJECTS</span><span class="lang-sc">项目</span><span class="lang-tc">專案</span></span></div>
                 <div class="dropdown-item" data-mobile-target="cv" onclick="switchTab('cv')"><span class="menu-text"><span class="lang-en">CV</span><span class="lang-sc">简历</span><span class="lang-tc">簡歷</span></span></div>
-                
                 <div class="dropdown-item" onclick="toggleThemeMode()" style="border-bottom: none;"><span class="menu-text" id="mobileThemeText"><span class="lang-en">THEME [ &#x2600;&#xFE0E; ]</span><span class="lang-sc">风格 [ &#x2600;&#xFE0E; ]</span><span class="lang-tc">風格 [ &#x2600;&#xFE0E; ]</span></span></span></div>
             </div>
         </div>
@@ -548,6 +547,13 @@ body {
         <div class="lang-en"><div class="cv-section-title">News & Updates</div></div>
         <div class="lang-sc"><div class="cv-section-title">最新动态</div></div>
         <div class="lang-tc"><div class="cv-section-title">最新動態</div></div>
+
+        <div class="news-item">
+            <div class="news-date">Apr 2026</div>
+            <div class="lang-en news-content">Got named to the Dean's List for winter quarter!</div>
+            <div class="lang-sc news-content">荣登冬季院长嘉奖名单！</div>
+            <div class="lang-tc news-content">榮登冬季院長嘉獎名單！</div>
+        </div>
 
         <div class="news-item">
             <div class="news-date">Apr 2026</div>
@@ -670,9 +676,9 @@ body {
                 <span class="lang-tc degree-text">電機與電腦工程 (ECE) 理學學士</span>
                 <span class="date-text">Sep. 2024 - Jun. 2027</span>
             </div>
-            <p class="lang-en" style="margin-bottom: 5px;"><i>Honors & Awards:</i> ECE Department Honors Candidate</p>
-            <p class="lang-sc" style="margin-bottom: 5px;"><i>荣誉与奖项：</i> ECE 学院荣誉学位候选人 (Department Honors)</p>
-            <p class="lang-tc" style="margin-bottom: 5px;"><i>榮譽與獎項：</i> ECE 學院榮譽學位候選人 (Department Honors)</p>
+            <p class="lang-en" style="margin-bottom: 5px;"><i>Honors & Awards:</i> ECE Department Honors Candidate, Dean's List of two Quarters</p>
+            <p class="lang-sc" style="margin-bottom: 5px;"><i>荣誉与奖项：</i> ECE 学院荣誉学位候选人，院长名单（两季度） (Department Honors)</p>
+            <p class="lang-tc" style="margin-bottom: 5px;"><i>榮譽與獎項：</i> ECE 學院榮譽學位候選人，院長名單（兩季度） (Department Honors)</p>
             <p class="lang-en"><i>Relevant Coursework:</i> Signal Processing, Digital Circuits, Computer Hardware, Scientific Computing.</p>
             <p class="lang-sc"><i>核心课程：</i> 信号处理、数字电路与系统、计算机硬件技能、科学计算等。</p>
             <p class="lang-tc"><i>核心課程：</i> 訊號處理、數位電路與系統、電腦硬體技能、科學計算等。</p>
@@ -738,13 +744,13 @@ body {
                 <span class="date-text">Apr. 2026 - Present</span>
             </div>
             <ul class="lang-en">
-                <li>Assisting Prof. Alex Mamishev in EE 393 course operations, guiding students through technical writing and communication concepts.</li>
+                <li>Assisting Prof. Alex Mamishev in EE 393 course operations, grading students' assignments, and guiding students through technical writing and communication concepts.</li>
             </ul>
             <ul class="lang-sc">
-                <li>协助 Alex Mamishev 教授进行 EE 393 课程的教学工作，辅导学生掌握技术写作与专业沟通技巧。</li>
+                <li>协助 Alex Mamishev 教授进行 EE 393 课程的教学工作，批改学生作业，辅导学生掌握技术写作与专业沟通技巧。</li>
             </ul>
             <ul class="lang-tc">
-                <li>協助 Alex Mamishev 教授進行 EE 393 課程的教學工作，輔導學生掌握技術寫作與專業溝通技巧。</li>
+                <li>協助 Alex Mamishev 教授進行 EE 393 課程的教學工作，批改學生作业，輔導學生掌握技術寫作與專業溝通技巧。</li>
             </ul>
         </div>
 
@@ -949,11 +955,11 @@ body {
         if (enable) {
             document.body.classList.add('dark-mode');
             if(themeBtn) themeBtn.innerHTML = '[ &#x263E;&#xFE0E; ]'; 
-            if(mobileThemeText) mobileThemeText.innerHTML = 'Theme [ &#x263E;&#xFE0E; ]';
+            if(mobileThemeText) mobileThemeText.innerHTML = '<span class="lang-en">THEME [ &#x2600;&#xFE0E; ]</span><span class="lang-sc">风格 [ &#x2600;&#xFE0E; ]</span><span class="lang-tc">風格 [ &#x2600;&#xFE0E; ]</span></span></span>';
         } else {
             document.body.classList.remove('dark-mode');
             if(themeBtn) themeBtn.innerHTML = '[ &#x2600;&#xFE0E; ]'; 
-            if(mobileThemeText) mobileThemeText.innerHTML = 'Theme [ &#x2600;&#xFE0E; ]';
+            if(mobileThemeText) mobileThemeText.innerHTML = '<span class="lang-en">THEME [ &#x2600;&#xFE0E; ]</span><span class="lang-sc">风格 [ &#x2600;&#xFE0E; ]</span><span class="lang-tc">風格 [ &#x2600;&#xFE0E; ]</span></span></span>';
         }
     }
 
